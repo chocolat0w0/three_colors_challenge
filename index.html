@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0;">
+<title>3色マーカーチャレンジ</title>
+</head>
+
+<body>
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+    <!-- 本番バージョン、サイズと速度のために最適化されています -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+    
+    <div id="app">
+        <button @click="select" class="btn">えらぶ</button>
+        <ul class="color-list">
+            
+            <li v-for="(item, index) in selectedColor"
+                :key="`color${index}`"
+                :style="{ backgroundColor: color(index) }">
+                <div class="color-code">
+                    R: {{ selectedColor[index].r }}<br>
+                    G: {{ selectedColor[index].g }}<br>
+                    B: {{ selectedColor[index].b }}<br>
+                </div>
+            </li>
+            </ul>
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+              selectedColor: [
+                  {r: 256, g: 256, b:256},
+                  {r: 256, g: 256, b:256},
+                  {r: 256, g: 256, b:256}
+              ]
+            },
+            methods: {
+                select: function() {
+                    const newColor = this.selectedColor.map(c => {
+                        return {
+                            r: Math.floor(Math.random() * 256),
+                            g: Math.floor(Math.random() * 256),
+                            b: Math.floor(Math.random() * 256)
+                        }
+                    })
+                    this.selectedColor = newColor
+                },
+                color: function(index) {
+                    return `rgb(${this.selectedColor[index].r}, ${this.selectedColor[index].g}, ${this.selectedColor[index].b})`
+                }
+            },
+            mounted: function() {
+                this.select()
+            }
+        })
+    </script>
+    
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        margin: 0;
+        font-family: "MS Pゴシック", sans-serif;
+    }
+    
+    .btn {
+        position: absolute;
+        top: 10vh;
+        left: 50%;
+        width: 20vw;
+        height: 50px;
+        transform: translateX(-50%);
+        z-index: 10;
+        background-color: #333;
+        opacity: 0.8;
+        font-size: 30px;
+        color: #fff;
+        border: 2px solid #fff;
+        border-radius: 25px;
+    }
+    
+    .color-list {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .color-list > li {
+        flex: 1 1 auto;
+        position: relative;
+    }
+    
+    .color-code {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 40px;
+        background-color: #fff;
+        opacity: 0.8;
+        font-size: 20px;
+        text-align: center;
+    }
+    </style>
+</body>
+</html>
