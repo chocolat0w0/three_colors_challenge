@@ -72,9 +72,8 @@
     
     .btn {
         position: absolute;
-        top: 10vh;
         left: 50%;
-        width: 20vw;
+        min-width: 20vw;
         height: 50px;
         transform: translateX(-50%);
         z-index: 10;
@@ -86,33 +85,73 @@
         border-radius: 25px;
     }
     
+    @media screen and (min-width: 600px) {
+        .btn {
+            top: 10vh;
+        }
+    }
+            
+    @media screen and (max-width: 600px) {
+        .btn {
+            bottom: 5vh;
+        }
+    }
+    
     .color-list {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        display: flex;
         margin: 0;
         padding: 0;
         list-style: none;
     }
     
-    .color-list > li {
-        flex: 1 1 auto;
-        position: relative;
+    @media screen and (min-width: 600px) {
+        .color-list {
+            display: flex;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
     }
     
+    .color-list > li {
+        position: relative;
+    }
+
+    @media screen and (min-width: 600px) {
+        .color-list > li {
+            flex: 1 1 auto;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .color-list > li {
+            height: 26vh;
+        }        
+    }
+            
     .color-code {
         position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 40px;
         background-color: #fff;
         opacity: 0.8;
         font-size: 20px;
         text-align: center;
     }
-    </style>
+    
+    @media screen and (min-width: 600px) {
+        .color-code {
+            bottom: 0;
+            width: 100%;
+            padding: 40px;        
+        }
+    }
+    
+    @media screen and (max-width: 600px) {
+        .color-code {
+            right: 0;
+            padding: 30px 10px;
+        }
+    }
+</style>
 </body>
 </html>
